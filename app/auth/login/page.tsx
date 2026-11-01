@@ -1,0 +1,14 @@
+import React from 'react'
+
+const page = () => {
+  return (
+    <div className='grid grid-cols-1 lg:grid-cols-2'>
+        <div className='bg-white'>
+            <h2 className='font-bold text-4xl'>Welcome back</h2>
+        </div>
+        <div></div>
+    </div>
+  )
+}
+
+export default page
