@@ -1,16 +1,29 @@
-import React from 'react'
+import type { Metadata } from "next";
+import Image from "next/image";
+import LoginForm from "@/app/components/login-form";
 
-const page = () => {
+export const metadata: Metadata = {
+  title: "Sign In",
+  description: "Sign in to your account.",
+};
+
+export default function LoginPage() {
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-2'>
-        <div>
-            <h2 className='font-bold text-4xl text-strong'>Welcome back</h2>
-        </div>
-        <div>
+    <main className="grid min-h-screen grid-cols-1 bg-background lg:grid-cols-2">
+      <div className="flex items-center justify-center px-6 py-12">
+        <LoginForm />
+      </div>
 
-        </div>
-    </div>
-  )
+      <div className="relative hidden lg:block">
+        <Image
+          src="/auth.png"
+          alt="Modern glass building"
+          fill
+          priority
+          sizes="50vw"
+          className="object-cover dark:brightness-75"
+        />
+      </div>
+    </main>
+  );
 }
-
-export default page
