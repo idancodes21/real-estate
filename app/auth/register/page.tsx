@@ -1,6 +1,6 @@
+import RegisterForm from "@/components/register-form";
 import type { Metadata } from "next";
 import Image from "next/image";
-import RegisterForm from "@/app/components/register-form";
 
 export const metadata: Metadata = {
   title: "Create Account",
