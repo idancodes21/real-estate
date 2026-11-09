@@ -1,9 +1,16 @@
 import DashboardShell from "@/components/DashboardShell";
+import { getCurrentUser } from "@/lib/get-current-user";
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <DashboardShell>{children}</DashboardShell>;
+  const user = await getCurrentUser();
+
+  return (
+    <DashboardShell user={user}>
+      {children}
+    </DashboardShell>
+  );
 }

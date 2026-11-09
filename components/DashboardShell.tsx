@@ -12,11 +12,21 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
+import type { getCurrentUser } from "@/lib/get-current-user";
+
+type CurrentUser = NonNullable<
+  Awaited<ReturnType<typeof getCurrentUser>>
+>;
+
+interface DashboardShellProps {
+  children: React.ReactNode;
+  user: CurrentUser | null;
+}
+
 export default function DashboardShell({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  user,
+}: DashboardShellProps) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const pathname = usePathname();
 
@@ -27,7 +37,10 @@ export default function DashboardShell({
 
   return (
     <div className="flex h-screen flex-col overflow-hidden">
-      <Navbar onMenuClick={() => setMobileNavOpen(true)} />
+      <Navbar
+      onMenuClick={() => setMobileNavOpen(true)}
+       user={user}
+      />
 
       <div className="flex min-h-0 flex-1">
         {/* Desktop sidebar */}

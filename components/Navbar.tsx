@@ -3,12 +3,18 @@ import Link from "next/link";
 import { Bell, Menu, Search } from "lucide-react";
 
 import { Input } from "./ui/input";
+import type { getCurrentUser } from "@/lib/get-current-user";
+
+type CurrentUser = NonNullable<
+  Awaited<ReturnType<typeof getCurrentUser>>
+>;
 
 interface NavbarProps {
   onMenuClick: () => void;
+  user: CurrentUser | null;
 }
 
-const Navbar = ({ onMenuClick }: NavbarProps) => {
+const Navbar = ({ onMenuClick, user }: NavbarProps) => {
   return (
     <nav className="flex h-[70px] w-full shrink-0 items-center justify-between border-b bg-sidebar px-4 md:px-6">
       {/* Left side */}
@@ -85,10 +91,12 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
 
           <div className="hidden text-left lg:block">
             <h2 className="text-sm font-bold leading-tight text-foreground">
-              Hawkins Maru
+             {user?.name || "User"}
             </h2>
             <p className="text-xs text-muted-foreground">
-              Company Manager
+             {user?.role
+        ? user.role.charAt(0) + user.role.slice(1).toLowerCase()
+        : "Customer"}
             </p>
           </div>
         </div>
