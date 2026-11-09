@@ -31,7 +31,7 @@ const SideNav = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden md:flex h-screen w-64 flex-col border-r border-sidebar-border bg-sidebar p-4">
+    <aside className="flex h-full w-full flex-col border-r border-sidebar-border bg-sidebar p-4">
       <nav className="mt-6 flex flex-col gap-2">
         {homeNav.map((item) => {
           const isActive = pathname === item.href;
