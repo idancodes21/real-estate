@@ -61,7 +61,7 @@ export default function RevenueChart() {
         data: lastMonth,
         backgroundColor: colors.primary,
         borderRadius: 4,
-        barPercentage: 0.6,
+        barPercentage: 0.9,
         categoryPercentage: 0.7,
       },
       {
@@ -69,7 +69,7 @@ export default function RevenueChart() {
         data: runningMonth,
         backgroundColor: colors.light,
         borderRadius: 4,
-        barPercentage: 0.6,
+        barPercentage: 0.9,
         categoryPercentage: 0.7,
       },
     ],

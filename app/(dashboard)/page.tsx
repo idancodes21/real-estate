@@ -1,3 +1,4 @@
+import PropertyReferrals from '@/components/dashboard/property-referrals'
 import RevenueChart from '@/components/dashboard/revenue-chart'
 import StatCards from '@/components/stat-cards'
 import React from 'react'
@@ -10,7 +11,7 @@ const page = () => {
 
       <div className="grid gap-4 xl:grid-cols-[2fr_1fr]">
         <RevenueChart />
-        {/* Property Referrals goes here next */}
+        <PropertyReferrals />
       </div>
     </div>
   )
