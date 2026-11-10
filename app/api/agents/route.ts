@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/get-current-user";
@@ -11,7 +10,7 @@ export async function GET(request: NextRequest) {
     if (!currentUser) {
       return NextResponse.json(
         { message: "Unauthorized. Please log in." },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -19,7 +18,7 @@ export async function GET(request: NextRequest) {
     if (currentUser.role !== "MANAGER") {
       return NextResponse.json(
         { message: "You do not have permission to view agents." },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -29,7 +28,7 @@ export async function GET(request: NextRequest) {
     const page = Math.max(1, Number(searchParams.get("page")) || 1);
     const limit = Math.min(
       50,
-      Math.max(1, Number(searchParams.get("limit")) || 10)
+      Math.max(1, Number(searchParams.get("limit")) || 10),
     );
 
     const where = {
@@ -82,6 +81,12 @@ export async function GET(request: NextRequest) {
               avatar: true,
               isActive: true,
               createdAt: true,
+              profile: {
+                select: {
+                  city: true,
+                  country: true,
+                },
+              },
             },
           },
           _count: {
@@ -118,7 +123,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(
       { message: "Something went wrong while fetching agents." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

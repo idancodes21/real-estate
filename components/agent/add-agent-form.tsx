@@ -89,17 +89,17 @@ export default function AddAgentForm() {
 
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-useEffect(() => {
-  if (!selectedFile) {
-    setPreviewUrl(null);
-    return;
-  }
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreviewUrl(null);
+      return;
+    }
 
-  const url = URL.createObjectURL(selectedFile);
-  setPreviewUrl(url);
+    const url = URL.createObjectURL(selectedFile);
+    setPreviewUrl(url);
 
-  return () => URL.revokeObjectURL(url);
-}, [selectedFile]);
+    return () => URL.revokeObjectURL(url);
+  }, [selectedFile]);
 
   return (
     <form action={formAction} className="overflow-hidden rounded-xl bg-card">
@@ -109,20 +109,20 @@ useEffect(() => {
       <div className="px-5 pb-8 sm:px-6">
         {/* Avatar + actions */}
         <div className="flex items-start justify-between">
-         <div className="-mt-10 flex size-20 shrink-0 items-center justify-center overflow-hidden rounded-full border-4 border-card bg-muted text-muted-foreground">
-  {previewUrl ? (
-    <Image
-      src={previewUrl}
-      alt="Agent profile preview"
-      width={80}
-      height={80}
-      unoptimized
-      className="size-full object-cover"
-    />
-  ) : (
-    <UserRound className="size-8" />
-  )}
-</div>
+          <div className="-mt-10 flex size-20 shrink-0 items-center justify-center overflow-hidden rounded-full border-4 border-card bg-muted text-muted-foreground">
+            {previewUrl ? (
+              <Image
+                src={previewUrl}
+                alt="Agent profile preview"
+                width={80}
+                height={80}
+                unoptimized
+                className="size-full object-cover"
+              />
+            ) : (
+              <UserRound className="size-8" />
+            )}
+          </div>
 
           <div className="flex items-center gap-2 pt-3">
             <Link
@@ -259,7 +259,7 @@ useEffect(() => {
           onDragOver={(e) => e.preventDefault()}
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
-          className="flex min-h-[75px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-input bg-aceent px-4 py-3 transition-colors hover:border-primary/50 hover:bg-accent/30 mt-5"
+          className="flex min-h-[75px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-input bg-card px-4 py-3 transition-colors hover:border-primary/50 hover:bg-accent/30 mt-5"
         >
           <input
             ref={fileInputRef}
