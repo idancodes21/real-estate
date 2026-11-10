@@ -75,65 +75,73 @@ export default function RevenueChart() {
     ],
   };
 
-  const options: ChartOptions<"bar"> = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: {
-        grid: { display: false },
-        border: { display: false },
-        ticks: { color: colors.text, font: { size: 11 } },
-      },
-      y: {
-        beginAtZero: true,
-        grid: { color: colors.grid },
-        border: { display: false },
-        ticks: {
-          color: colors.text,
-          font: { size: 11 },
-          stepSize: 200,
-          callback: (value) => `${value}k`,
-        },
+ const options: ChartOptions<"bar"> = {
+  responsive: true,
+  maintainAspectRatio: false,
+  layout: { padding: { top: 4 } },
+  plugins: { legend: { display: false } },
+  scales: {
+    x: {
+      grid: { display: false },
+      border: { display: false },
+      ticks: {
+        color: colors.text,
+        font: { size: 11 },
+        autoSkip: true,
+        maxRotation: 0,
       },
     },
-  };
+    y: {
+      beginAtZero: true,
+      grid: { color: colors.grid },
+      border: { display: false },
+      ticks: {
+        color: colors.text,
+        font: { size: 11 },
+        maxTicksLimit: 5,
+        callback: (value) => `${value}k`,
+      },
+    },
+  },
+};
 
   return (
-    <section className="rounded-xl bg-card p-5 text-card-foreground">
-      <div className="flex items-start justify-between">
-        <h2 className="text-base font-semibold text-foreground">
-          Total Revenue
-        </h2>
+  <section className="min-w-0 rounded-xl bg-card p-4 text-card-foreground sm:p-5">
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+      <h2 className="text-base font-semibold text-foreground">
+        Total Revenue
+      </h2>
 
-        <div className="flex items-center gap-4 text-xs text-muted-foreground">
-          <span className="flex items-center gap-1.5">
-            <span className="size-2 rounded-full bg-primary" />
-            Last Month
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="size-2 rounded-full bg-primary/30" />
-            Running Month
-          </span>
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-xs text-muted-foreground">
+        <span className="flex items-center gap-1.5">
+          <span className="size-2 rounded-full bg-primary" />
+          Last Month
+        </span>
+        <span className="flex items-center gap-2">
+          <span className="size-2 rounded-full bg-primary/30" />
+          Running Month
+        </span>
+      </div>
+    </div>
+
+    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+      <p className="text-xl font-bold text-foreground sm:text-2xl">
+        $236,535
+      </p>
+      <div className="flex items-center gap-2">
+        <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+          <ArrowUp className="size-3" />
+        </span>
+        <div className="text-xs leading-tight">
+          <p className="font-medium text-primary">0.8%</p>
+          <p className="text-muted-foreground">Than last Month</p>
         </div>
       </div>
+    </div>
 
-      <div className="mt-3 flex items-center gap-4">
-        <p className="text-2xl font-bold text-foreground">$236,535</p>
-        <div className="flex items-center gap-2">
-          <span className="flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
-            <ArrowUp className="size-3" />
-          </span>
-          <div className="text-xs leading-tight">
-            <p className="font-medium text-primary">0.8%</p>
-            <p className="text-muted-foreground">Than last Month</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-6 h-64">
-        <Bar data={data} options={options} />
-      </div>
-    </section>
+    <div className="relative mt-5 h-56 w-full sm:mt-6 sm:h-64 xl:h-72">
+      <Bar data={data} options={options} />
+    </div>
+  </section>
   );
 }

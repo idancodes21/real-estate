@@ -23,8 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
+    <html lang="en" data-scroll-behavior="smooth"
       className={cn("h-full", "antialiased", manRope.variable, "font-sans", geist.variable)}
       suppressHydrationWarning
     >

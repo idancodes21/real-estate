@@ -15,7 +15,7 @@ export default async function DashboardLayout({
   }
 
   // Only managers can access this dashboard
-  if (user.role !== "MANAGER") {
+  if (!["ADMIN", "MANAGER"].includes(user.role)) {
     redirect("/unauthorized");
   }
 
