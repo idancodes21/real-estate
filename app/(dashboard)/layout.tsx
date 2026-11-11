@@ -11,7 +11,7 @@ export default async function DashboardLayout({
 
   // Require authentication
   if (!user) {
-    redirect("/login");
+    redirect("/auth/login");
   }
 
   // Only managers can access this dashboard
