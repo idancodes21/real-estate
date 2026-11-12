@@ -1,9 +1,11 @@
 import PropertyReferrals from '@/components/dashboard/property-referrals'
+import PropertyShowcase from '@/components/dashboard/property-showcase'
 import RevenueChart from '@/components/dashboard/revenue-chart'
 import StatCards from '@/components/stat-cards'
-import React from 'react'
+import { getLatestProperties } from '../data/properties' 
 
-const page = () => {
+export default async function DashboardPage() {
+   const properties = await getLatestProperties(8);
   return (
   <div className="space-y-6">
       <h1 className="text-2xl font-bold text-foreground">Dashboard</h1>
@@ -13,8 +15,8 @@ const page = () => {
         <RevenueChart />
         <PropertyReferrals />
       </div>
+
+       <PropertyShowcase properties={properties} />
     </div>
   )
 }
-
-export default page

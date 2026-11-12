@@ -20,3 +20,7 @@ export const properties: Property[] = [
   { id: 9, title: "Metro Jayakarta Hotel & Spa", location: "North Carolina, USA", price: 8100, beds: 4, area: 28, image: "/property-9.png" },
   { id: 10, title: "Metro Jayakarta Hotel & Spa", location: "North Carolina, USA", price: 5800, beds: 4, area: 28, image: "/property-10.png" },
 ];
+
+export async function getLatestProperties(limit = 8) {
+  return properties.slice(0, limit);
+}
